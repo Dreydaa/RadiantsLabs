@@ -1,0 +1,79 @@
+###############################################################################
+# 🌟 RadiantsLabs – .gitignore
+###############################################################################
+# ➜ Système / Éditeurs
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.sw?
+*.swo
+*.swp
+
+# ➜ Dépendances & caches de gestionnaires de paquets
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/cache/
+# conservez le lockfile si vous l’utilisez :
+# !package-lock.json
+# !yarn.lock
+# !pnpm-lock.yaml
+
+# ➜ Fichiers d’environnement
+.env
+.env.*         
+!.env.example   # gardez l’exemple sous contrôle de source
+.envrc
+vite-env.d.ts
+
+# ➜ Logs & rapports divers
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+coverage/
+.nyc_output/
+jest-*.html
+.eslintcache
+
+# ➜ Dossiers / fichiers de build & artefacts
+dist/
+build/
+out/
+.next/          # Next.js
+.vite/          # Vite
+.svelte-kit/    # SvelteKit
+.storybook-static/
+public/build/
+tmp/
+*.tsbuildinfo
+
+# ➜ Bases de données & ORM
+*.sqlite*
+*.db
+*.dump
+*.sql
+.prisma/
+prisma/dev.db
+
+# ➜ Docker / Containers (optionnel : dé-commenter si présent)
+# .docker/
+# docker-compose.override.yml
+
+# ➜ Fichiers compressés de publication npm
+*.tgz
+
+# ➜ Husky & git hooks générés
+.husky/_
+
+# ➜ OS : macOS Spotlight, Windows recycle bin, etc.
+.AppleDouble
+.LSOverride
+$RECYCLE.BIN/
+
+###############################################################################
+# Fin du fichier – ajoute, ajuste ou retire des règles selon tes besoins 👍
+###############################################################################
