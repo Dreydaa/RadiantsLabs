@@ -1,0 +1,122 @@
+.header {
+  background-color: var(--color-darkGreen);
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-elevated);
+}
+
+.header-container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerText {
+  color: #fff 
+}
+
+.header-nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: var(--color-beige);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    transition: all var(--transition-fast);
+  }
+
+  .nav-link:hover {
+    background-color: var(--color-darkGreen-light);
+    color: var(--color-lightBlue);
+  }
+
+  .nav-link.active {
+    background-color: var(--color-darkGreen-light);
+    color: var(--color-lightBlue);
+  }
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.user-profile:hover {
+  background-color: var(--color-darkGreen-light);
+}
+
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: var(--color-lightBlue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid var(--color-beige);
+  transition: all var(--transition-fast);
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+  border-color: var(--color-lightBlue);
+}
+
+.mobile-menu-button {
+  display: block;
+  color: var(--color-beige);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: all var(--transition-fast);
+}
+
+.mobile-menu-button:hover {
+  background-color: var(--color-darkGreen-light);
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-button {
+    display: none;
+  }
+}
+
+.mobile-menu {
+  display: none;
+  background-color: var(--color-darkGreen-light);
+  overflow: hidden;
+}
+
+.mobile-menu.open {
+  display: block;
+  animation: slideDown var(--transition-medium) ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

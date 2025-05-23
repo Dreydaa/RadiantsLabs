@@ -1,0 +1,133 @@
+html {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  background-color: #F7F2DC;
+  color: #FFC07D;
+  min-height: 100vh;
+}
+
+input, textarea, select {
+  background-color: #FFF;
+  color: #1A202C;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #1A202C;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+}
+
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 0 2px #FFC07F;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-royalblue);
+}
+
+header {
+  background-color: var(--color-darkGreen);
+}
+
+main {
+  background-color: var(--color-darkGreen);
+}
+
+.text {
+  color : #FFF;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background-color: #2A2A72;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-lightblue);
+  color: var(--color-royalblue);
+}
+
+.btn-secondary {
+  background-color: #ABC4FF;
+  color: #2A2A72;
+}
+
+.btn-secondary:hover {
+  background-color: #2A2A72;
+}
+
+.card {
+  background-color: #1A202C;
+  color: #FFC07D;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #FFC07D;
+  margin-bottom: 0.5rem;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #FFC07D;
+}
+
+.nav-link {
+  color: #FFC07D;
+  opacity: 0.8;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  color: #FFC07F;
+}
+
+.active-nav-link {
+  opacity: 1;
+  color: #FFC07F;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtXK-F2qC0s.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/playfairdisplay/v30/nuFRD-vYSZviVYUb_rj3ij__anPXDTnCjmHKM4nYO7KN_qiTXtHA-X-uE0.woff2') format('woff2');
+}

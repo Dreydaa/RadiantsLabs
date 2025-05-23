@@ -1,0 +1,105 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import './variables.css';
+@import './animations.css';
+@import './layout.css';
+@import './components.css';
+@import './utilities.css';
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-beige);
+  color: var(--color-deepBlue);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Selection Styles */
+::selection {
+  background: var(--color-lightBlue);
+  color: var(--color-deepBlue);
+}
+
+/* Focus Outline */
+:focus {
+  outline: 2px solid var(--color-lightBlue);
+  outline-offset: 2px;
+}
+
+/* Smooth Scrolling for Anchor Links */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+/* Remove Tap Highlight on Mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom Component Base Styles */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background-color: var(--color-royalblue);
+  color: var(--color-lightblue);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-lightblue);
+  color: var(--color-royalblue);
+  border: 1px solid var(--color-royalblue);
+}
+
+.btn-secondary {
+  background-color: #ABC4FF;
+  color: #2A2A72;
+}
+
+.btn-secondary:hover {
+  background-color: crimson;
+  color: #000;
+  border: none;
+}
+
+.card {
+  background-color: var(--color-beige-light);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-elevated);
+  transition: transform var(--transition-medium);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.input {
+  background-color: var(--color-beige-light);
+  border: 1px solid var(--color-lightBlue);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-deepBlue);
+  transition: all var(--transition-fast);
+}
+
+.input:focus {
+  border-color: var(--color-darkGreen);
+  box-shadow: 0 0 0 2px var(--color-lightBlue-light);
+}

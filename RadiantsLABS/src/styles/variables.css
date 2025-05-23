@@ -1,0 +1,38 @@
+:root {
+  /* Colors */
+  --color-darkGreen: #615D42;
+  --color-lightblue: #ABC4FF;
+  --color-royalblue: #2A2A72;
+  --color-beige: #FCEADB;
+
+  /* Color variations */
+  --color-darkGreen-light: #615D42;
+  --color-darkGreen-dark: #081C15;
+  --color-lightBlue-light: #BDE0E2;
+  --color-lightBlue-dark: #8ECBD0;
+  --color-deepBlue-light: #2A4A7F;
+  --color-deepBlue-dark: #0F1D2E;
+  --color-beige-light: #FFFFFF;
+  --color-beige-dark: #E9F5E6;
+  --color-white: #FFFFFF;
+
+  /* Custom Properties */
+  --header-height: 4rem;
+  --footer-height: 12rem;
+  --sidebar-width: 16rem;
+  --max-content-width: 80rem;
+  
+  /* Custom Shadows */
+  --shadow-subtle: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-floating: 0 8px 24px rgba(0, 0, 0, 0.15);
+  
+  /* Custom Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-medium: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+
+  /* trouver l'intrus */
+  
+}

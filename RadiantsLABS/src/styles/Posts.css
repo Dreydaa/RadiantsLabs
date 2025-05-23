@@ -1,0 +1,10 @@
+.create {
+   background-color: var(--color-beige);
+   color: #000;
+}
+
+.buttonMsg, .buttonPost {
+    background-color: var(--color-lightblue);
+    color: #000;
+}
+
