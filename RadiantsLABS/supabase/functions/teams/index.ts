@@ -89,7 +89,7 @@ Deno.serve(async (req) => {
 
     if (req.method === 'POST') {
       // Check if user already owns a team
-      const { data: existingTeam, error: existingTeamError } = await supabase
+      const { data: existingTeam } = await supabase
         .from('teams')
         .select('id')
         .eq('owner_id', user.id)
