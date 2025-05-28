@@ -69,7 +69,7 @@ function App() {
         />
         <Route 
           path="profile/:userId" 
-          element={<ProfilePage />} 
+          element={<ProfilePage id={''} name={''} fullName={''} age={0} role={''} region={''} experience={''} rank={''} avatar={''} isVerified={false} followers={0} following={0} achievements={[]} agents={[]} team={null} />} 
         />
         <Route 
           path="draft-simulator" 

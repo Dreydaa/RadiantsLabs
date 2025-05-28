@@ -1,5 +1,6 @@
 import { createClient } from 'npm:@supabase/supabase-js';
 import { corsHeaders } from '../_shared/cors.ts';
+import { withSecurity } from '../_shared/middleware.ts';
 
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -12,7 +13,7 @@ interface SendMessageBody {
   fileType?: string;
 }
 
-Deno.serve(async (req) => {
+Deno.serve(withSecurity (async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -106,4 +107,4 @@ Deno.serve(async (req) => {
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }
-});
+}));

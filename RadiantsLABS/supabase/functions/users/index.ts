@@ -1,11 +1,12 @@
 import { createClient } from 'npm:@supabase/supabase-js';
 import { corsHeaders } from '../_shared/cors.ts';
+import { withSecurity } from '../_shared/middleware.ts';
 
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-Deno.serve(async (req) => {
+Deno.serve(withSecurity(async req => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -14,7 +15,7 @@ Deno.serve(async (req) => {
     // Verify JWT token
     const authHeader = req.headers.get('Authorization');
     if (!authHeader) {
-      return new Response(
+      return new Response(  
         JSON.stringify({ error: 'No authorization header' }),
         { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
@@ -94,4 +95,4 @@ Deno.serve(async (req) => {
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }
-});
+}));
