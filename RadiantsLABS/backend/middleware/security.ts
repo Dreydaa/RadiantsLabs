@@ -1,4 +1,4 @@
-import { corsHeaders } from "./cors.ts";
+import { corsHeaders } from "../../supabase/functions/_shared/cors.ts";
 
 export function withSecurity(handler: (req: Request) => Response | Promise<Response>) {
     return async (req: Request): Promise<Response> => {

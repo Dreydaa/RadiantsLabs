@@ -1,6 +1,6 @@
 import { createClient } from 'npm:@supabase/supabase-js';
 import { corsHeaders } from '../_shared/cors.ts';
-import { withSecurity } from '../_shared/middleware.ts';
+import { withSecurity } from '../../../backend/middleware/security.ts';
 
 import { config } from "https://deno.land/x/dotenv@v3.2.2/mod.ts";
 // Load environment variables

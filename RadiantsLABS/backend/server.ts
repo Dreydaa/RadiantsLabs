@@ -2,12 +2,14 @@
 // import { Deno } from "https://deno.land/std@0.224.0/http/server.ts";
 import { corsHeaders } from "../supabase/functions/_shared/cors.ts";
 import { handleLogin, handleProfile } from "./auth.ts";
+import { withSecurity } from "./middleware/security.ts";
 
-Deno.serve({port: 8000}, (req: Request) => {
+function router(req: Request): Response | Promise<Response> {
     const url = new URL(req.url);
 
-    if (req.method  === 'OPTIONS') {
-        return new Response("ok", {headers: corsHeaders});
+    //Pré-vol CORS pour alléger
+    if (req.method === 'OPTIONS') {
+        return new Response("ok", { headers: corsHeaders });
     }
 
     if (url.pathname === '/api/login' && req.method === 'POST') {
@@ -16,6 +18,18 @@ Deno.serve({port: 8000}, (req: Request) => {
     if (url.pathname === '/api/profile' && req.method === 'GET') {
         return handleProfile(req);
     }
-
     return new Response("Not found", { status: 404, headers: corsHeaders });
+}
+
+//On enveloppe le routeur
+const secureRouter = withSecurity(async (req) => {
+    try {
+        return await router(req);
+    } catch (err) {
+        console.error(err);
+        return new Response("Internal Server Error", { status: 500 });
+    }
 });
+
+//On sert serveur
+Deno.serve({ port: 8000 }, secureRouter);
