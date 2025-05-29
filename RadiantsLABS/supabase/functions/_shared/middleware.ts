@@ -1,4 +1,4 @@
-import { corsHeaders } from "./cors";
+import { corsHeaders } from "./cors.ts";
 
 export function withSecurity(handler: (req: Request) => Response | Promise<Response>) {
     return async (req: Request): Promise<Response> => {
@@ -9,7 +9,7 @@ export function withSecurity(handler: (req: Request) => Response | Promise<Respo
             headers.set(key, value);
         }
         
-        headers.set("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' supabase.co wss://*.supabase.co");
+        headers.set("Content-Security-Policy", "default-src 'self';script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' supabase.co wss://*.supabase.co");
 
         return new Response(res.body, {
             status: res.status,

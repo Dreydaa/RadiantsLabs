@@ -2,24 +2,24 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 // Layouts
-import MainLayout from './layouts/MainLayout.tsx';
-import AuthLayout from './layouts/AuthLayout.tsx';
+import MainLayout from './layouts/MainLayout';
+import AuthLayout from './layouts/AuthLayout';
 
 // Pages
-import HomePage from './pages/HomePage.tsx';
-import LoginPage from './pages/LoginPage.tsx';
-import SignupPage from './pages/SignupPage.tsx';
-import FeedPage from './pages/FeedPage.tsx';
-import TeamProfilePage from './pages/TeamProfilePage.tsx';
-import UserProfilePage from './pages/UserProfilePage.tsx';
-import PlayerRegistrationPage from './pages/PlayerRegistrationPage.tsx';
-import DraftSimulatorPage from './pages/DraftSimulatorPage.tsx';
-import PracticeOrganizerPage from './pages/PracticeOrganizerPage.tsx';
-import BlueprintPage from './pages/BlueprintPage.tsx';
-import ProfilePage from './pages/ProfilePage.tsx';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import FeedPage from './pages/FeedPage';
+import TeamProfilePage from './pages/TeamProfilePage';
+import UserProfilePage from './pages/UserProfilePage';
+import PlayerRegistrationPage from './pages/PlayerRegistrationPage';
+import DraftSimulatorPage from './pages/DraftSimulatorPage';
+import PracticeOrganizerPage from './pages/PracticeOrganizerPage';
+import BlueprintPage from './pages/BlueprintPage';
+import ProfilePage from './pages/ProfilePage';
 
 // Types
-import { User } from './types.ts';
+import { User } from './types';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
