@@ -1,32 +1,47 @@
 import { useState, FormEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { User } from '../types';
+import {api} from "../lib/api";
 
 interface LoginPageProps {
-  onLogin: (user: User) => void;
+  onLogin: (me: User) => void;
 }
 
 function LoginPage({ onLogin }: LoginPageProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
   
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
       setError('Please enter both email and password');
       return;
     }
     
-    // Mock login - in a real app this would call an API
-    onLogin({
-      id: '1',
-      email: email,
-      firstName: 'Demo',
-      lastName: 'User',
-      profileType: 'player'
-    });
+    //appel api pour check les informations du user
+    try {
+      await api("/api/login", {
+        method: "POST",
+        credentials: "include",   // indispensable pour envoyer/recevoir le cookie
+        body: JSON.stringify({ email, password }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      const me = await api<User | null>("/api/profile");
+      if (!me) {
+        throw new Error("Profile not found");
+      }
+      onLogin(me);
+      navigate("/user-profile", {replace: true});
+    }
+    catch (err) {
+      setError(String(err));
+    }
   };
 
   return (

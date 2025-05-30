@@ -55,6 +55,13 @@ radiants-labs/
 └── public/              # Static assets
 ```
 
+## Database
+
+# Écrase/actualise le fichier de référence
+supabase db dump -f supabase/schema.sql
+git add supabase/schema.sql
+git commit -m "Mise à jour du schéma"
+
 ## Core Features
 
 ### 1. Authentication System

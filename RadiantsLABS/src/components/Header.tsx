@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { User, Menu, X, FileSpreadsheet, Calendar, Map } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from './Logo';
+import GoToMyProfileButton from "../components/Test_UserProfile_Button";
 import { User as UserType } from '../types';
 import '../styles/Header.css';
 
@@ -14,9 +15,9 @@ interface HeaderProps {
 function Header({ user, onLogout }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  
+
   const toggleMenu = () => setMenuOpen(!menuOpen);
-  
+
   const handleLogout = () => {
     onLogout();
     setMenuOpen(false);
@@ -33,10 +34,11 @@ function Header({ user, onLogout }: HeaderProps) {
     <header className="header shadow-md">
       <div className="headerText flex items-center justify-between">
         <Logo />
-        
+
         <div className="hidden md:flex items-center space-x-8">
           {user ? (
             <>
+              <GoToMyProfileButton />
               <Link to="/feed" className="text-cream-50 opacity-80 hover:opacity-100 transition">
                 Feed
               </Link>
@@ -68,7 +70,7 @@ function Header({ user, onLogout }: HeaderProps) {
                 <div className="ml-2 text-cream-50">
                   {user.firstName || user.teamName || user.email}
                 </div>
-                <button 
+                <button
                   onClick={(e) => {
                     e.stopPropagation();
                     handleLogout();
@@ -90,7 +92,7 @@ function Header({ user, onLogout }: HeaderProps) {
             </>
           )}
         </div>
-        
+
         <button className="md:hidden" onClick={toggleMenu}>
           {menuOpen ? (
             <X className="text-cream-50" />
@@ -99,7 +101,7 @@ function Header({ user, onLogout }: HeaderProps) {
           )}
         </button>
       </div>
-      
+
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -111,7 +113,7 @@ function Header({ user, onLogout }: HeaderProps) {
             <div className="flex flex-col p-4 space-y-4">
               {user ? (
                 <>
-                  <div 
+                  <div
                     className="flex items-center py-2 border-b border-olive-700 cursor-pointer"
                     onClick={navigateToProfile}
                   >
@@ -146,7 +148,7 @@ function Header({ user, onLogout }: HeaderProps) {
                       Team Profile
                     </Link>
                   )}
-                  <button 
+                  <button
                     onClick={handleLogout}
                     className="text-cream-100 py-2 text-left"
                   >

@@ -4,6 +4,7 @@ import { corsHeaders } from "../supabase/functions/_shared/cors.ts";
 import { handleLogin, handleProfile } from "./auth.ts";
 import { withSecurity } from "./middleware/security.ts";
 
+
 function router(req: Request): Response | Promise<Response> {
     const url = new URL(req.url);
 

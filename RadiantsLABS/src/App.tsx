@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { api } from "./lib/api";
 
 // Layouts
 import MainLayout from './layouts/MainLayout';
@@ -23,28 +24,42 @@ import { User } from './types';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
+  const [isAuth, setAuth] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('radiantsUser');
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (e) {
-        localStorage.removeItem('radiantsUser');
-      }
-    }
-    setLoading(false);
+    // const storedUser = localStorage.getItem('radiantsUser');
+    // if (storedUser) {
+    //   try {
+    //     setUser(JSON.parse(storedUser));
+    //   } catch (e) {
+    //     localStorage.removeItem('radiantsUser');
+    //   }
+    // }
+    api("/api/profile")
+      .then((u) => {
+        setUser(u as User);
+        setAuth(true);
+      })
+      .catch(() => setAuth(false))
+      .finally(() => setLoading(false));
   }, []);
-  
-  const login = (userData: User) => {
-    setUser(userData);
-    localStorage.setItem('radiantsUser', JSON.stringify(userData));
-  };
-  
+
+  // const login = (userData: User) => {
+  //   setUser(userData);
+  //   localStorage.setItem('radiantsUser', JSON.stringify(userData));
+  // };
+  const login = (me: User) => {
+    setUser(me);
+    setAuth(true);
+  }
+
   const logout = () => {
+    //Expiration immédiate du token auth
+    document.cookie = "sid=; Max-Age=0; Path=/";
     setUser(null);
-    localStorage.removeItem('radiantsUser');
+    setAuth(false);
+    // localStorage.removeItem('radiantsUser');
   };
 
   if (loading) {
@@ -55,52 +70,52 @@ function App() {
     <Routes>
       <Route path="/" element={<MainLayout user={user} onLogout={logout} />}>
         <Route index element={<HomePage />} />
-        <Route 
-          path="feed" 
-          element={user ? <FeedPage user={user} /> : <Navigate to="/login" replace />} 
+        <Route
+          path="feed"
+          element={user ? <FeedPage user={user} /> : <Navigate to="/login" replace />}
         />
-        <Route 
-          path="team-profile" 
-          element={user ? <TeamProfilePage user={user} /> : <Navigate to="/login" replace />} 
+        <Route
+          path="team-profile"
+          element={user ? <TeamProfilePage user={user} /> : <Navigate to="/login" replace />}
         />
-        <Route 
-          path="user-profile" 
-          element={user ? <UserProfilePage user={user} /> : <Navigate to="/login" replace />} 
+        <Route
+          path="user-profile"
+          element={isAuth && user ? <UserProfilePage user={user} /> : <Navigate to="/login" replace />}
         />
-        <Route 
-          path="profile/:userId" 
-          element={<ProfilePage id={''} name={''} fullName={''} age={0} role={''} region={''} experience={''} rank={''} avatar={''} isVerified={false} followers={0} following={0} achievements={[]} agents={[]} team={null} />} 
+        <Route
+          path="profile/"
+          element={isAuth && user ? <ProfilePage id={''} name={''} fullName={''} age={0} role={''} region={''} experience={''} rank={''} avatar={''} isVerified={false} followers={0} following={0} achievements={[]} agents={[]} team={null} /> : <Navigate to="/login" replace/>}
         />
-        <Route 
-          path="draft-simulator" 
-          element={user ? <DraftSimulatorPage /> : <Navigate to="/login" replace />} 
+        <Route
+          path="draft-simulator"
+          element={user ? <DraftSimulatorPage /> : <Navigate to="/login" replace />}
         />
-        <Route 
-          path="practice-organizer" 
-          element={user ? <PracticeOrganizerPage /> : <Navigate to="/login" replace />} 
+        <Route
+          path="practice-organizer"
+          element={user ? <PracticeOrganizerPage /> : <Navigate to="/login" replace />}
         />
-        <Route 
-          path="blueprint" 
-          element={user ? <BlueprintPage /> : <Navigate to="/login" replace />} 
+        <Route
+          path="blueprint"
+          element={user ? <BlueprintPage /> : <Navigate to="/login" replace />}
         />
       </Route>
-      
+
       <Route path="/" element={<AuthLayout />}>
-        <Route 
-          path="login" 
-          element={user ? <Navigate to="/feed" replace /> : <LoginPage onLogin={login} />} 
+        <Route
+          path="login"
+          element={isAuth ? <Navigate to="/feed" replace /> : <LoginPage onLogin={login} />}
         />
-        <Route 
-          path="signup" 
-          element={user ? <Navigate to="/feed" replace /> : <SignupPage onSignup={login} />} 
+        <Route
+          path="signup"
+          element={isAuth ? <Navigate to="/feed" replace /> : <SignupPage onSignup={login} />}
         />
-        <Route 
-          path="player-registration" 
+        <Route
+          path="player-registration"
           element={
-            user ? 
-              <PlayerRegistrationPage user={user} /> : 
+            user ?
+              <PlayerRegistrationPage user={user} /> :
               <Navigate to="/login" replace />
-          } 
+          }
         />
       </Route>
     </Routes>
